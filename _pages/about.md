@@ -49,6 +49,12 @@ Runtong Wu, Jiayao Song, **Fei Teng**, Xianhao Ren, Yuyan Gao, Kailun Yang
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
+[NRSeg: Noise-Resilient Learning for BEV Semantic Segmentation via Driving World Models](https://arxiv.org/pdf/2507.04002)
+Siyu Li, **Fei Teng**, Yihong Cao, Kailun Yang, Zhiyong Li, Yaonan Wang
+</div></div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
 [QuaDreamer: Controllable Panoramic Video Generation for Quadruped Robots](https://arxiv.org/pdf/2508.02512)
 Sheng Wu, **Fei Teng**, Hao Shi, Qi Jiang, Kai Luo, Kaiwei Wang, Kailun Yang
 </div></div>
