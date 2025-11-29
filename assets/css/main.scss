@@ -109,57 +109,75 @@ h1:before, .anchor:before {
 }
 
 
-/* ========================
-   Lead Grid (2 columns)
-   ======================== */
+/* ================================
+   1. Lead (大图) 两列布局（48% + 48%）
+================================ */
 .lead-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 24px;
-  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .lead-grid .paper-box {
-  border-bottom: none; /* 不要主题默认的分隔线 */
+  width: 48%;
+  border-bottom: none;
   padding: 0;
 }
 
 .lead-grid .paper-box-image img {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  box-shadow: 3px 3px 6px #888;
-  border-radius: 10px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
-/* ========================
-   Collaborative Grid (4 columns)
-   ======================== */
+/* ================================
+   2. Collaborative (小图) 四列布局（23%）
+================================ */
 .collab-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 18px;
 }
 
 .collab-grid .paper-box {
+  width: 23%;
   border-bottom: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .collab-grid .paper-box-image img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  box-shadow: 3px 3px 6px #888;
   border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .lead-grid {
-    grid-template-columns: 1fr;
-  }
-  .collab-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* 文字排版：稍小一点、更易阅读 */
+.paper-box-text {
+  font-size: 0.88rem;
+  line-height: 1.32rem;
+  margin-top: 6px;
+}
+
+.paper-box-text a {
+  font-size: 0.92rem;
+}
+
+/* ================================
+   3. Mobile 响应式
+================================ */
+@media (max-width: 900px) {
+  .lead-grid .paper-box { width: 100%; }
+  .collab-grid .paper-box { width: 48%; }
+}
+
+@media (max-width: 600px) {
+  .collab-grid .paper-box { width: 100%; }
 }
