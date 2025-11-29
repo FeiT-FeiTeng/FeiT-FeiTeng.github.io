@@ -30,7 +30,109 @@ My research focuses on Scene Understanding, Generative Models, Ai+.
 
 First & Co-first Author Publications
 
+
+<h2 id="publications">Publications</h2>
+
+<h3>Lead & Co-first Author Publications</h3>
+
+<div class="lead-grid">
+
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">CVPR 2026</div>
+      <img src='images/500x300.png'>
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+[OmniTrack++: Omnidirectional Multi-Object Tracking by Learning Large-FoV Trajectory Feedback](https://arxiv.org/pdf/2511.00510)  
+Kai Luo, Hao Shi, Kunyu Peng, **Fei Teng**, Sheng Wu, Kaiwei Wang, Kailun Yang
+  </div>
+</div>
+
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">CVPR 2026</div>
+      <img src='images/500x300.png'>
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+[DepTR-MOT: Unveiling the Potential of Depth-Informed Trajectory Refinement for Multi-Object Tracking](https://arxiv.org/pdf/2509.17323)  
+Buyin Deng, Lingxin Huang, Kai Luo, **Fei Teng**, Kailun Yang
+  </div>
+</div>
+
+</div> <!-- end of lead-grid -->
+
+---
+
+<h3>Collaborative Publications</h3>
+
+<div class="collab-grid">
+
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">CVPR 2025</div>
+      <img src='images/500x300.png'>
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+[Visually Grounded Narratives: Reducing Cognitive Burden in Researcher-Participant Interaction](https://arxiv.org/pdf/2509.00381)  
+Runtong Wu, Jiayao Song, **Fei Teng**, Xianhao Ren, Yuyan Gao, Kailun Yang
+  </div>
+</div>
+
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">CVPR 2025</div>
+      <img src='images/500x300.png'>
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+[NRSeg: Noise-Resilient Learning for BEV Semantic Segmentation via Driving World Models](https://arxiv.org/pdf/2507.04002)  
+Siyu Li, **Fei Teng**, Yihong Cao, Kailun Yang, Zhiyong Li, Yaonan Wang
+  </div>
+</div>
+
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">CoRL 2025</div>
+      <img src='images/500x300.png'>
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+[QuaDreamer: Controllable Panoramic Video Generation for Quadruped Robots](https://arxiv.org/pdf/2508.02512)  
+Sheng Wu, **Fei Teng**, Hao Shi, Qi Jiang, Kai Luo, Kaiwei Wang, Kailun Yang
+  </div>
+</div>
+
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">ArXiv 2025</div>
+      <img src='images/500x300.png'>
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+[Hallucinating 360°: Panoramic Street-View Generation via Local Scenes Diffusion and Probabilistic Prompting](https://arxiv.org/pdf/2507.06971)  
+**Fei Teng**, Kai Luo, Sheng Wu, Siyu Li, Pujun Guo, Jiale Wei, Kunyu Peng, Jiaming Zhang, Kailun Yang
+  </div>
+</div>
+
+</div> <!-- end collab-grid -->
+
+
+
 Collaborative Publications
+
+
+
+
+
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
