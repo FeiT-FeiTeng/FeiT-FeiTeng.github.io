@@ -28,7 +28,7 @@ My research focuses on Scene Understanding, Generative Models, Ai+.
 
 # 📝 Publications 
 
-First & Co-first Author Publicationssssss
+First & Co-first Author Publicationeeeee
 
 
 <h2 id="publications">Publications</h2>
