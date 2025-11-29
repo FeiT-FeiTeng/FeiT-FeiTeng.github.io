@@ -107,3 +107,58 @@ h1:before, .anchor:before {
     background-color: #00369f;
     font-size: .8em;
 }
+
+
+/* ========================
+   Lead Grid (2 columns)
+   ======================== */
+.lead-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24px;
+  margin-bottom: 40px;
+}
+
+.lead-grid .paper-box {
+  border-bottom: none; /* 不要主题默认的分隔线 */
+  padding: 0;
+}
+
+.lead-grid .paper-box-image img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  box-shadow: 3px 3px 6px #888;
+  border-radius: 10px;
+}
+
+/* ========================
+   Collaborative Grid (4 columns)
+   ======================== */
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 18px;
+}
+
+.collab-grid .paper-box {
+  border-bottom: none;
+  padding: 0;
+}
+
+.collab-grid .paper-box-image img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  box-shadow: 3px 3px 6px #888;
+  border-radius: 6px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .lead-grid {
+    grid-template-columns: 1fr;
+  }
+  .collab-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
