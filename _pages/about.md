@@ -18,20 +18,33 @@ redirect_from:
 <span class='anchor' id='about-me'></span>
 
 Hi, I am Fei Teng, a PhD candidate at the School of Robotics, Hunan University.  
-My research focuses on 360° Panoramic Perception, Generative Models, Scene Understanding.
+My research focuses on Scene Understanding, Generative Models, Ai+.
 
+<!--
 # 🔥 News
-# - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-# - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+ - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+ - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+-->
 
 # 📝 Publications 
+
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
+[OmniTrack++: Omnidirectional Multi-Object Tracking by Learning Large-FoV Trajectory Feedback](https://arxiv.org/pdf/2511.00510)
+Kai Luo, Hao Shi, Kunyu Peng, **Fei Teng**, Sheng Wu, Kaiwei Wang, Kailun Yang
 
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+[DepTR-MOT: Unveiling the Potential of Depth-Informed Trajectory Refinement for Multi-Object Tracking](https://arxiv.org/pdf/2509.17323)
+Buyin Deng, Lingxin Huang, Kai Luo, **Fei Teng**, Kailun Yang
+
+[Visually Grounded Narratives: Reducing Cognitive Burden in Researcher-Participant Interaction](https://arxiv.org/pdf/2509.00381)
+Runtong Wu, Jiayao Song, **Fei Teng**, Xianhao Ren, Yuyan Gao, Kailun Yang
+
+[QuaDreamer: Controllable Panoramic Video Generation for Quadruped Robots](https://arxiv.org/pdf/2508.02512)
+Sheng Wu, **Fei Teng**, Hao Shi, Qi Jiang, Kai Luo, Kaiwei Wang, Kailun Yang
+
+
 
 [**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
