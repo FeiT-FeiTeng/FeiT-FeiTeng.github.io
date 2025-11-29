@@ -133,7 +133,7 @@ Collaborative Publications
 
 
 
-
+<!--
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 [OmniTrack++: Omnidirectional Multi-Object Tracking by Learning Large-FoV Trajectory Feedback](https://arxiv.org/pdf/2511.00510)
@@ -217,6 +217,7 @@ Kai Luo, Hao Shi, Sheng Wu, **Fei Teng**, Mengfei Duan, Chang Huang, Yuhang Wang
 [OAFuser: Towards omni-aperture fusion for light field semantic segmentation](https://ieeexplore.ieee.org/abstract/document/10677512)
 **Fei Teng**, Jiaming Zhang, Kunyu Peng, Yaonan Wang, Rainer Stiefelhagen, Kailun Yang
 </div></div>
+-->
 
 [**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
