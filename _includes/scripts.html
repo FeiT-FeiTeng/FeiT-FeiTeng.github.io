@@ -2,3 +2,14 @@
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}
+
+<!-- Auto-count publications -->
+<script>
+fetch("{{ url }}")
+  .then(response => response.json())
+  .then(data => {
+      let pubCount = Object.keys(data['publications']).length;
+      let el = document.getElementById("pub_count");
+      if (el) el.innerText = pubCount;
+  });
+</script>
