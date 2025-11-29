@@ -57,25 +57,3 @@ I have published <strong><span id="pub_count"></span></strong> papers indexed on
 
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
-
-- <script>
-(async function() {
-  try {
-    // 模板已有的变量，指向你的 google-scholar-stats 分支 JSON
-    const url = "{{ url }}";
-
-    let res = await fetch(url);
-    let data = await res.json();
-
-    // 论文数量（publications 字典的 key 数量）
-    let pubCount = Object.keys(data.publications).length;
-
-    // 写入页面
-    document.getElementById("pub_count").innerText = pubCount;
-  } catch (e) {
-    console.error("Failed to load GS data:", e);
-    document.getElementById("pub_count").innerText = "N/A";
-  }
-})();
-</script>
-
