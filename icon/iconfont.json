@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1968935",
+      "name": "火箭",
+      "font_class": "rocket__easyi",
+      "unicode": "e50a",
+      "unicode_decimal": 58634
+    },
+    {
+      "icon_id": "2305075",
+      "name": "Repair",
+      "font_class": "icon-test",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "9169975",
+      "name": "工人",
+      "font_class": "gongren",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    }
+  ]
+}

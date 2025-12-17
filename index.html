@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fei Teng Homepage</title>
+  <script src="icon/iconfont.js"></script>
+  <link rel="stylesheet" href="icon/iconfont.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    /* 左侧边栏 */
+    .sidebar-left {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+
+    .profile-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .profile-name {
+      text-align: left;
+      padding: 10px;
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .nav-menu {
+      list-style: none;
+    }
+
+    .nav-menu li {
+      margin-bottom: 8px;
+      list-style: disc;
+      list-style-position: outside;
+      margin-left: 18px;
+    }
+
+    .nav-menu a {
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      padding: 5px 0;
+      transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+      color: #0066cc;
+    }
+
+    /* 主内容区 */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Added top section flex container for About and News */
+    .top-section {
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .about-section {
+      flex: 1;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-section {
+      width: 320px;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .section-title2 {
+      text-align: center;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+      flex: 1;
+    }
+
+    .info-box {
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-box h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* 出版物网格 */
+    .publication-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .publication-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.5s;
+    }
+
+    .publication-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .pdf-preview {
+      background: linear-gradient(135deg, #d0d0d0 0%, #e0e0e0 100%);
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .pdf-preview-warning {
+      font-size: 11px;
+      color: #d32f2f;
+      margin-top: 5px;
+    }
+
+    .pdf-preview img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .publication-info {
+      padding: 15px;
+    }
+
+    .publication-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #000;
+    }
+
+    .publication-authors {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .publication-authors del {
+      color: #d32f2f;
+    }
+
+    .publication-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-link {
+      padding: 6px 12px;
+      border: 1px solid #0066cc;
+      color: #0066cc;
+      background: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-link:hover {
+      background: #0066cc;
+      color: white;
+    }
+
+    .text-content {
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 8px;
+      color: #666;
+      font-size: 14px;
+      text-align: left;
+      /* display: flex;
+      align-items: center;
+      justify-content: center; */
+    }
+
+    /* 滚动文字 */
+    /* 更新现有的 news-box 和新增相关样式 */
+    /* 更新 news-box 相关样式 */
+    .news-box {
+      margin-top: 20px;
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+      position: relative;
+      height: 100%;
+    }
+
+    .news-content-wrapper {
+      animation: scroll-seamless 10s linear infinite;
+      padding: 10px 0;
+    }
+
+    .news-content-wrapper:hover {
+      animation-play-state: paused;
+    }
+
+    .news-item {
+      padding: 8px 0;
+    }
+
+    .news-item:first-child {
+      padding-top: 0;
+    }
+
+    .news-item:last-child {
+      padding-bottom: 0;
+    }
+
+    @keyframes scroll-seamless {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    @keyframes scroll-up {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar-left {
+        position: static;
+      }
+
+      /* Stack About and News vertically on smaller screens */
+      .top-section {
+        flex-direction: column;
+      }
+
+      .news-section {
+        width: 100%;
+      }
+
+      .publication-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .publication-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* 添加视频轮播相关样式 */
+    .video_carousel {
+      display: flex;
+      gap: 20px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 左侧标签样式 */
+    .video-tabs {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .tab-item {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-item:hover {
+      background: #e9ecef;
+      border-color: #adb5bd;
+    }
+
+    .tab-item.active {
+      background: #007bff;
+      border-color: #007bff;
+      color: white;
+    }
+
+    .tab-thumb {
+      width: 100%;
+      height: 120px;
+      background: #6c757d;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .tab-thumb .icon {
+      width: 32px;
+      height: 32px;
+      fill: #ffffff;
+    }
+
+    .tab-title {
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* 右侧视频显示区域样式 */
+    .video-display {
+      flex: 1;
+      min-height: 400px;
+    }
+
+    .video-container {
+      display: none;
+    }
+
+    .video-container.active {
+      display: block;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 400px;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    .video-description {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 6px;
+    }
+
+    .video-description h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .video-description p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .video_carousel {
+        flex-direction: column;
+      }
+
+      .video-tabs {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      .tab-item {
+        min-width: 150px;
+      }
+    }
+
+    .imgIcon {
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 左侧边栏 -->
+    <aside class="sidebar-left">
+      <div class="profile-photo">
+        <img src="assets/image.jpg" alt="Fei Teng">
+      </div>
+      <div class="profile-name">
+
+        111
+
+      </div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="mailto:feiteng_tf@outlook.com">feiteng_tf@outlook.com</a></li>
+          <li><a href="mailto:feiteng@hun.edu.cn">feiteng@hun.edu.cn</a></li>
+          <li><a
+              href="https://scholar.google.com/citations?hl=en&user=9A9B_u0AAAAJ&view_op=list_works&sortby=pubdate">Google
+              Scholar</a></li>
+          <li><a href="https://github.com/FeiT-FeiTeng">Github</a></li>
+          <li><a href="https://github.com/FeiT-FeiTeng">Workshop Homapage (Working on)</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+      <!-- Wrapped About Me and News in a flex container -->
+      <div class="top-section">
+        <!-- About Me -->
+        <section id="about" class="about-section">
+          <h2 class="section-title">About me</h2>
+          <div class="text-content">I am Fei Teng, a PhD student at Hunan University, China, supervised by Prof. Kailun
+            Yang.
+            Prior to this, I completed my M.Sc. studies at the Karlsruhe Institute of Technology, Germany, and received
+            my B.Sc. degree from the China University of Mining and Technology, China.<br>
+
+            <img src="icon/agent.avif" alt="" class="imgIcon">Research Interests:
+
+
+            <!--
+            My overarching goal is to establish a closed-loop paradigm that leverages data to improve perception and, in turn, uses perception to guide data generation, enabling intelligent agents to build safe, robust, and generalizable perception systems in open-world environments.
+            -->
+            I aim to make agents less likely to get lost in open worlds and less prone to breaking down when transferred
+            across scenes.
+
+            I am currently seeking collaborators interested in open-world perception and world modeling. If this
+            resonates with your research interests, feel free to reach out.
+
+            
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use href="#icon-icon-test"></use>
+            </svg>
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use href="#icon-gongren"></use>
+            </svg>
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use href="#icon-rocket__easyi"></use>
+            </svg>
+
+          </div>
+          <div class="about-grid">
+            <div class="info-box">
+              <h3>Experience</h3>
+              <p>M.Sc., at the Karlsruhe Institute of Technology, Germany
+              <p>B.Sc., the China University of Mining and Technology, China
+              </p>
+            </div>
+            <div class="info-box">
+              <h3>Interest</h3>
+              <p><img src="icon/perception.jpg" alt="" class="imgIcon">Panoramic visual perception and multimodal scene
+                understanding for intelligent agents
+
+              <p><img src="icon/world.png" alt="" class="imgIcon">Panoramic data generation and omnidirectional view
+                completion in open-world settings</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Moved News section here from right sidebar -->
+        <!-- 修改 News 部分的 HTML 结构 -->
+        <!-- 修改 News 部分的 HTML 结构 -->
+        <section class="news-section">
+          <h2 class="section-title">News</h2>
+          <div class="news-box">
+            <div class="news-content-wrapper">
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 1</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 2</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 3</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 4</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 5</div>
+              </div>
+              <!-- 重复相同的内容以实现无缝滚动 -->
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 1</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 2</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 3</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 4</div>
+              </div>
+              <div class="news-item">
+                <div class="news-content">滚动页 文字 5</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 修改 Gallery 部分的 HTML 结构 -->
+      <section class="section">
+        <h2 class="section-title section-title2">Gallery</h2>
+
+        <div class="video_carousel">
+          <!-- 左侧标签区域 -->
+          <div class="video-tabs">
+            <div class="tab-item active" data-video="video1">
+              <div class="tab-thumb">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32"
+                  height="32">
+                  <path d="M384 160v704l512-352z" fill="#ffffff"></path>
+                </svg>
+              </div>
+              <div class="tab-title">视频标题 1</div>
+            </div>
+
+            <div class="tab-item" data-video="video2">
+              <div class="tab-thumb">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32"
+                  height="32">
+                  <path d="M384 160v704l512-352z" fill="#ffffff"></path>
+                </svg>
+              </div>
+              <div class="tab-title">视频标题 2</div>
+            </div>
+
+            <div class="tab-item" data-video="video3">
+              <div class="tab-thumb">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32"
+                  height="32">
+                  <path d="M384 160v704l512-352z" fill="#ffffff"></path>
+                </svg>
+              </div>
+              <div class="tab-title">视频标题 3</div>
+            </div>
+          </div>
+
+          <!-- 右侧视频播放区域 -->
+          <div class="video-display">
+            <div class="video-container active" id="video1">
+              <video controls autoplay="false">
+                <source src="assets/v001.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+              </video>
+              <div class="video-description">
+                <h3>视频标题 1</h3>
+                <p>这是视频1的详细描述信息。在这里可以添加关于视频内容的详细介绍。</p>
+              </div>
+            </div>
+
+            <div class="video-container" id="video2">
+              <video controls autoplay="false">
+                <source src="assets/v001.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+              </video>
+              <div class="video-description">
+                <h3>视频标题 2</h3>
+                <p>这是视频2的详细描述信息。在这里可以添加关于视频内容的详细介绍。</p>
+              </div>
+            </div>
+
+            <div class="video-container" id="video3">
+              <video controls autoplay="false">
+                <source src="assets/v001.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+              </video>
+              <div class="video-description">
+                <h3>视频标题 3</h3>
+                <p>这是视频3的详细描述信息。在这里可以添加关于视频内容的详细介绍。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Publications -->
+      <section id="publications" class="section">
+        <h2 class="section-title">Publication</h2>
+        <div class="publication-grid">
+          <!-- Publication Card 1 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\OmniTrack++.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">OmniTrack++: Omnidirectional Multi-Object Tracking by
+                Learning Large-FoV Trajectory Feedback</div>
+              <div class="publication-authors">K Luo, H Shi, K Peng, Fei Teng, S Wu, K Wang, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2511.00510" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">Github</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 2 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\DepTR.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">DepTR-MOT: Unveiling the Potential of Depth-Informed Trajectory Refinement for Multi-Object Tracking</div>
+              <div class="publication-authors">B Deng, L Huang, K Luo, Fei Teng, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2509.17323" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">Github</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 3 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\VGN.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Visually Grounded Narratives: Reducing Cognitive Burden in Researcher-Participant Interaction</div>
+              <div class="publication-authors">R Wu, J Song, Fei Teng, X Ren, Y Gao, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2509.00381" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">Github</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 4 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\QuaDreamer.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">QuaDreamer: Controllable Panoramic Video Generation for Quadruped Robots</div>
+              <div class="publication-authors">S Wu, Fei Teng, H Shi, Q Jiang, K Luo, K Wang, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2508.02512" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 5 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\Hallucinating.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Hallucinating 360: Panoramic Street-View Generation via Local Scenes Diffusion and Probabilistic Prompting</div>
+              <div class="publication-authors">Fei Teng, K Luo, S Wu, S Li, P Guo, J Wei, K Peng, J Zhang, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2507.06971" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 6 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\NRSeg.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">NRSeg: Noise-Resilient Learning for BEV Semantic Segmentation via Driving World Models</div>
+              <div class="publication-authors">S Li, Fei Teng, Y Cao, K Yang, Z Li, Y Wang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2507.04002" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 7 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\outofd.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Out-of-Distribution Semantic Occupancy Prediction</div>
+              <div class="publication-authors">Y Zhang, M Duan, K Peng, Y Wang, R Liu, Fei Teng, K Luo, Z Li, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2506.21185" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 8 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\GBE.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Go Beyond Earth: Understanding Human Actions and Scenes in Microgravity Environments</div>
+              <div class="publication-authors">D Wen, L Qi, K Peng, K Yang, Fei Teng, A Luo, J Fu, Y Chen, R Liu, Y Shi, M.S Sarfraz, R Stiefelhagen</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2506.02845" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 9 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\PODS.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Panoramic Out-of-Distribution Segmentation</div>
+              <div class="publication-authors">M Duan, K Yang, Y Zhang, Y Cao, Fei Teng, K Luo, J Zhang, Z Li, S Li</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2505.03539" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Publication Card 10 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\UPS.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Unveiling the potential of segment anything model 2 for rgb-thermal semantic segmentation with language guidance</div>
+              <div class="publication-authors">J Zhao, Fei Teng, K Luo, G Zhao, Z Li, X Zheng, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2503.02581" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 11 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\LFX.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Unifying Light Field Perception with Field of Parallax</div>
+              <div class="publication-authors">Fei Teng, B Deng, B Zheng, K Luo, K Peng, J Zhang, K Yang</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2503.00747" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Publication Card 12 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\OMOT.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">Omnidirectional Multi-Object Tracking</div>
+              <div class="publication-authors">K Luo, H Shi, S Wu, Fei Teng, M Duan, C Huang, Y Wang, K Wang, K Yang</div>
+              <div class="publication-links">
+                <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Luo_Omnidirectional_Multi-Object_Tracking_CVPR_2025_paper.pdf" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Publication Card 13 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\LFTc.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">LF Tracy: A Unified Single-Pipeline Paradigm for Salient Object Detection in Light Field Cameras</div>
+              <div class="publication-authors">Fei Teng, J Zhang, J Liu, K Peng, X Cheng, Z Li, K Yang</div>
+              <div class="publication-links">
+                <a href="https://link.springer.com/chapter/10.1007/978-3-031-78447-7_29" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Publication Card 14 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <img src="assets\Paper\OAFuser.png" alt="">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">OAFuser: Towards omni-aperture fusion for light field semantic segmentation</div>
+              <div class="publication-authors">Fei Teng, J Zhang, K Peng, Y Wang, R Stiefelhagen, K Yang</div>
+              <div class="publication-links">
+                <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10677512" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Card 15 -->
+          <div class="publication-card">
+            <div class="pdf-preview">
+              <div>pdf超链接</div>
+              <div class="pdf-preview-warning">无标题暂查放大转效</div>
+            </div>
+            <div class="publication-info">
+              <div class="publication-title">To be continue</div>
+              <div class="publication-authors">D Wen, L Qi, K Peng, K Yang, Fei Teng, A Luo, J Fu, Y Chen, R Liu, Y Shi, M.S Sarfraz, R Stiefelhagen</div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/pdf/2506.02845" class="btn-link">Paper</a>
+                <a href="https://github.com/FeiT-FeiTeng/OAFuser" class="btn-link">同页跳链接</a>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+      <!-- Research Project -->
+      <section id="research" class="section">
+        <h2 class="section-title">Research project</h2>
+        <div class="text-content">文字</div>
+      </section>
+
+      <!-- Entrepreneurial Experience -->
+      <section id="experience" class="section">
+        <h2 class="section-title">Entrepreneurial Experience</h2>
+        <div class="text-content">文字</div>
+      </section>
+
+      <!-- Research Vision -->
+      <section id="vision" class="section">
+        <h2 class="section-title">Research Vision</h2>
+        <div class="text-content">文字</div>
+      </section>
+    </main>
+  </div>
+  <script>
+    // 添加视频切换功能的 JavaScript 代码
+    document.addEventListener('DOMContentLoaded', function () {
+      // 获取所有标签项和视频容器
+      const tabItems = document.querySelectorAll('.tab-item');
+      const videoContainers = document.querySelectorAll('.video-container');
+
+      // 为每个标签项添加点击事件监听器
+      tabItems.forEach(tab => {
+        tab.addEventListener('click', function () {
+          const targetVideoId = this.getAttribute('data-video');
+
+          // 移除所有标签的活动状态
+          tabItems.forEach(item => item.classList.remove('active'));
+
+          // 为当前点击的标签添加活动状态
+          this.classList.add('active');
+
+          // 隐藏所有视频容器
+          videoContainers.forEach(container => container.classList.remove('active'));
+
+          // 显示目标视频容器
+          const targetContainer = document.getElementById(targetVideoId);
+          targetContainer.classList.add('active');
+
+          // 获取目标视频元素并尝试播放
+          const targetVideo = targetContainer.querySelector('video');
+          if (targetVideo) {
+            // 先尝试静音播放（大多数浏览器允许）
+            targetVideo.muted = true;
+            // targetVideo.play().catch(e => {
+            //   // 如果静音播放也失败，则移除autoplay属性让用户手动播放
+            //   targetVideo.autoplay = false;
+            // });
+          }
+
+          // 暂停其他视频
+          document.querySelectorAll('video').forEach(video => {
+            if (video !== targetVideo) {
+              video.pause();
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
