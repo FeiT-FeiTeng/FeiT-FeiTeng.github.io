@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "iconfont"; /* Project id  */
+  font-family: "iconfont";
   src: url('iconfont.ttf?t=1765697459346') format('truetype');
 }
 
@@ -22,4 +22,3 @@
 .icon-gongren:before {
   content: "\e694";
 }
-

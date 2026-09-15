@@ -1,0 +1,15 @@
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.cache/
+node_modules/
+playwright-report/
+test-results/
+coverage/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
