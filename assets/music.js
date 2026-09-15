@@ -6,30 +6,32 @@
   if (!player || !audio?.dataset.src?.trim()) return;
 
   const toggle = document.querySelector("#music-toggle");
-  const panel = document.querySelector("#music-panel");
-  const play = document.querySelector("#music-play");
   const volume = document.querySelector("#music-volume");
-  const volumeValue = document.querySelector("#music-volume-value");
   const status = document.querySelector("#music-status");
   const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const maxVolume = 6;
   let context;
   let gain;
   let wantsPlayback = false;
+  let autoplayAttempted = false;
+  let lastVolume = maxVolume;
+  let fadeEndsAt = 0;
   let attempt = 0;
 
-  document.querySelector("#music-title").textContent =
-    audio.dataset.title || "Background music";
-  document.querySelector("#music-artist").textContent = audio.dataset.artist;
-  player.hidden = false;
+  function level() {
+    return Math.max(0, Math.min(maxVolume, Number(volume.value) || 0));
+  }
 
   function syncControls() {
-    const command = wantsPlayback ? "Pause" : "Play";
-    [toggle, play].forEach((button) => {
-      button.setAttribute("aria-pressed", String(wantsPlayback));
-      button.setAttribute("aria-label", `${command} background music`);
-      button.title = `${command} background music`;
-    });
-    play.innerHTML = `<i data-lucide="${wantsPlayback ? "pause" : "play"}" aria-hidden="true"></i>`;
+    const audible = wantsPlayback && !audio.paused && context?.state === "running" && level() > 0;
+    const label = audible ? "Mute Zoo" : "Play Zoo";
+    toggle.setAttribute("aria-pressed", String(audible));
+    toggle.setAttribute("aria-label", label);
+    toggle.title = label;
+    toggle.innerHTML = `<i data-lucide="${audible ? "volume-1" : "volume-x"}" aria-hidden="true"></i>`;
+    volume.setAttribute("aria-valuetext", `${level()}%`);
+    volume.title = `Volume: ${level()}%`;
+    volume.style.setProperty("--volume-fill", `${level() / maxVolume * 100}%`);
     window.lucide?.createIcons();
   }
 
@@ -37,14 +39,16 @@
     if (!gain) return;
     const now = context.currentTime;
     const current = gain.gain.value;
+    const target = Math.max(0, Math.min(maxVolume / 100, value));
     gain.gain.cancelScheduledValues(now);
-    gain.gain.setValueAtTime(duration ? current : value, now);
-    if (duration) gain.gain.linearRampToValueAtTime(value, now + duration);
+    gain.gain.setValueAtTime(duration ? current : target, now);
+    if (duration) gain.gain.linearRampToValueAtTime(target, now + duration);
   }
 
   function pause() {
     wantsPlayback = false;
     attempt += 1;
+    fadeEndsAt = 0;
     setGain(0);
     audio.pause();
     syncControls();
@@ -53,7 +57,6 @@
   function showError(message) {
     pause();
     status.textContent = message;
-    status.hidden = false;
   }
 
   async function start() {
@@ -64,8 +67,8 @@
     }
     wantsPlayback = true;
     const request = ++attempt;
-    status.hidden = true;
-    syncControls();
+    status.textContent = "";
+    let resumeTimeout;
     try {
       if (!context) {
         context = new AudioContext();
@@ -75,55 +78,64 @@
         source.connect(gain);
         gain.connect(context.destination);
       }
+      fadeEndsAt = 0;
       setGain(0);
       if (!audio.hasAttribute("src") || audio.error) audio.src = audio.dataset.src;
-      const resume = context.resume();
-      const playback = audio.play();
-      await Promise.all([resume, playback]);
+      const resume = Promise.race([
+        context.resume(),
+        new Promise((resolve, reject) => {
+          resumeTimeout = setTimeout(() => reject(new DOMException("Audio activation timed out", "NotAllowedError")), 2500);
+        }),
+      ]);
+      await Promise.all([resume, audio.play()]);
       if (request !== attempt) return;
-      if (!wantsPlayback || document.hidden) {
+      if (!wantsPlayback || document.hidden || context.state !== "running") {
         pause();
         return;
       }
-      setGain(Number(volume.value) / 100, 3);
+      fadeEndsAt = context.currentTime + 3;
+      setGain(level() / 100, 3);
+      syncControls();
     } catch (error) {
       if (request !== attempt) return;
-      showError("Unable to play music. Please try again.");
+      showError(error.name === "NotAllowedError"
+        ? "Automatic playback is blocked. Use the sound button to play music."
+        : "Unable to play music. Please try again.");
+    } finally {
+      clearTimeout(resumeTimeout);
     }
   }
 
-  function closePanel(returnFocus = false) {
-    panel.hidden = true;
-    toggle.setAttribute("aria-expanded", "false");
-    if (returnFocus) toggle.focus();
+  function autoplay() {
+    if (autoplayAttempted || document.hidden) return;
+    autoplayAttempted = true;
+    start();
   }
 
   toggle.addEventListener("click", () => {
-    panel.hidden = false;
-    toggle.setAttribute("aria-expanded", "true");
+    autoplayAttempted = true;
     if (wantsPlayback) pause();
-    else start();
-  });
-  play.addEventListener("click", () => {
-    if (wantsPlayback) pause();
-    else start();
+    else {
+      if (level() === 0) volume.value = lastVolume;
+      start();
+    }
+    syncControls();
   });
   volume.addEventListener("input", () => {
-    const value = Math.max(0, Math.min(50, Number(volume.value)));
-    volumeValue.textContent = `${value}%`;
-    volume.setAttribute("aria-valuetext", `${value}%`);
-    if (wantsPlayback) setGain(value / 100, 0.2);
+    autoplayAttempted = true;
+    const value = level();
+    volume.value = value;
+    if (value === 0) pause();
+    else {
+      lastVolume = value;
+      if (!wantsPlayback) start();
+      else if (fadeEndsAt > 0) setGain(value / 100, Math.max(0.15, fadeEndsAt - context.currentTime));
+    }
+    syncControls();
   });
-  document.querySelector("#music-close").addEventListener("click", () => closePanel(true));
-  document.addEventListener("click", (event) => {
-    if (!player.contains(event.target)) closePanel();
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !panel.hidden) closePanel(true);
-  });
-  document.querySelector(".menu-toggle")?.addEventListener("click", () => closePanel());
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) pause();
+    else autoplay();
   });
   window.addEventListener("pagehide", pause);
   document.querySelectorAll("video").forEach((video) => {
@@ -140,4 +152,9 @@
   audio.addEventListener("pause", () => {
     if (wantsPlayback && audio.paused) pause();
   });
+
+  player.hidden = false;
+  syncControls();
+  if (document.readyState === "complete") autoplay();
+  else window.addEventListener("load", autoplay, { once: true });
 })();
