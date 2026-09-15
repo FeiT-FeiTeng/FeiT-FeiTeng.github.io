@@ -13,14 +13,44 @@
     <script defer src="assets/vendor/lucide.min.js"></script>
     <script defer src="assets/publications.js"></script>
     <script defer src="assets/site.js"></script>
+    <script defer src="assets/music.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="wordmark" href="#about" aria-label="Fei Teng, home"
-          >Fei Teng<span class="wordmark-dot" aria-hidden="true">.</span></a
-        >
+        <div class="header-identity">
+          <a class="wordmark" href="#about" aria-label="Fei Teng, home"
+            >Fei Teng<span class="wordmark-dot" aria-hidden="true">.</span></a
+          >
+          <div class="music-player" hidden>
+            <button id="music-toggle" class="music-toggle" type="button"
+              aria-label="Play background music" title="Play background music"
+              aria-pressed="false" aria-expanded="false" aria-controls="music-panel">
+              <i data-lucide="music-2" aria-hidden="true"></i>
+            </button>
+            <section id="music-panel" class="music-panel" aria-label="Background music" hidden>
+              <div class="music-heading">
+                <div class="music-track"><p id="music-title"></p><p id="music-artist"></p></div>
+                <button id="music-close" class="music-control" type="button"
+                  aria-label="Close music controls" title="Close music controls">
+                  <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="music-controls">
+                <button id="music-play" class="music-control" type="button"
+                  aria-label="Play background music" title="Play background music" aria-pressed="false">
+                  <i data-lucide="play" aria-hidden="true"></i>
+                </button>
+                <label class="sr-only" for="music-volume">Music volume</label>
+                <input id="music-volume" type="range" min="0" max="50" step="1" value="12" />
+                <output id="music-volume-value" for="music-volume">12%</output>
+              </div>
+              <p id="music-status" role="status" hidden></p>
+            </section>
+            <audio id="background-music" preload="none" loop data-src="assets/zoo.mp3" data-title="Zoo" data-artist="Shakira · Zootopia 2"></audio>
+          </div>
+        </div>
         <button
           class="icon-button menu-toggle"
           type="button"
