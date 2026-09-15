@@ -21,6 +21,7 @@ window.PUBLICATIONS = [
     "topic": "spatial",
     "role": "First author",
     "url": "https://arxiv.org/abs/2609.09012",
+    "project": "https://feit-feiteng.github.io/Spheriverse/",
     "code": "",
     "supplement": "",
     "image": "assets/research/spheriverse-figure1.png"

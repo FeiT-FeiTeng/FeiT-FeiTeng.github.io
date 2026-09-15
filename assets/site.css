@@ -777,9 +777,10 @@ h2 {
 }
 .work-bottom {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 8px 14px;
   border-top: 1px solid var(--line);
   margin-top: auto;
   padding-top: 10px;

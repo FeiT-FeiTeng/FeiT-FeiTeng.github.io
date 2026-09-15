@@ -106,7 +106,7 @@
       <h3><a href="${escapeHTML(paper.url)}" ${external}>${escapeHTML(name)}</a></h3>
       <p class="work-description">${escapeHTML(work.description)}</p>
       <div class="work-bottom"><p class="work-role"><strong>${escapeHTML(paper.role)}</strong></p>
-        <div class="work-links"><a href="${escapeHTML(paper.url)}" ${external}>${icon("file-text")}Paper</a>${paper.code ? `<a href="${escapeHTML(paper.code)}" ${external}>${icon("github")}Code</a>` : ""}</div>
+        <div class="work-links"><a href="${escapeHTML(paper.url)}" ${external}>${icon("file-text")}Paper</a>${paper.project ? `<a href="${escapeHTML(paper.project)}" ${external}>${icon("globe")}Project homepage</a>` : ""}${paper.code ? `<a href="${escapeHTML(paper.code)}" ${external}>${icon("github")}Code</a>` : ""}</div>
       </div>
     </article>`;
     })
@@ -156,7 +156,7 @@
         return `<article class="publication-row" data-paper-id="${paper.id}">
         <div class="publication-meta"><span class="publication-venue">${escapeHTML(venue)}</span><span class="publication-year">${paper.year}</span></div>
         <div class="publication-content"><h3><a href="${escapeHTML(paper.url)}" ${external}>${escapeHTML(paper.title)}</a></h3><p class="publication-authors">${authors}</p>
-          <div class="publication-extra">${paper.role !== "Co-author" ? `<span class="publication-role">${escapeHTML(paper.role)}</span>` : ""}<a href="${escapeHTML(paper.url)}" ${external}>${icon("file-text")}Paper</a>${paper.code ? `<a href="${escapeHTML(paper.code)}" ${external}>${icon("github")}Code</a>` : ""}${paper.supplement ? `<a href="${escapeHTML(paper.supplement)}" ${external}>${icon("paperclip")}Supplement</a>` : ""}</div>
+          <div class="publication-extra">${paper.role !== "Co-author" ? `<span class="publication-role">${escapeHTML(paper.role)}</span>` : ""}<a href="${escapeHTML(paper.url)}" ${external}>${icon("file-text")}Paper</a>${paper.project ? `<a href="${escapeHTML(paper.project)}" ${external}>${icon("globe")}Project homepage</a>` : ""}${paper.code ? `<a href="${escapeHTML(paper.code)}" ${external}>${icon("github")}Code</a>` : ""}${paper.supplement ? `<a href="${escapeHTML(paper.supplement)}" ${external}>${icon("paperclip")}Supplement</a>` : ""}</div>
         </div>
         <a class="publication-open" href="${escapeHTML(paper.url)}" ${external} aria-label="Open ${escapeHTML(paper.name)} paper" title="Open paper">${icon("arrow-up-right")}</a>
       </article>`;
