@@ -13,6 +13,7 @@
   let context;
   let gain;
   let wantsPlayback = false;
+  let pendingPlayback = false;
   let autoplayAttempted = false;
   let lastVolume = maxVolume;
   let fadeEndsAt = 0;
@@ -47,6 +48,7 @@
 
   function pause() {
     wantsPlayback = false;
+    pendingPlayback = false;
     attempt += 1;
     fadeEndsAt = 0;
     setGain(0);
@@ -60,18 +62,20 @@
   }
 
   async function start() {
-    if (document.hidden) return;
+    if (document.hidden || pendingPlayback) return;
     if (!AudioContext) {
       showError("Music playback is unavailable in this browser.");
       return;
     }
     wantsPlayback = true;
+    pendingPlayback = true;
     const request = ++attempt;
     status.textContent = "";
     let resumeTimeout;
     try {
       if (!context) {
         context = new AudioContext();
+        context.addEventListener("statechange", syncControls);
         gain = context.createGain();
         gain.gain.value = 0;
         const source = context.createMediaElementSource(audio);
@@ -89,7 +93,7 @@
       ]);
       await Promise.all([resume, audio.play()]);
       if (request !== attempt) return;
-      if (!wantsPlayback || document.hidden || context.state !== "running") {
+      if (!wantsPlayback || context.state !== "running") {
         pause();
         return;
       }
@@ -103,6 +107,7 @@
         : "Unable to play music. Please try again.");
     } finally {
       clearTimeout(resumeTimeout);
+      if (request === attempt) pendingPlayback = false;
     }
   }
 
@@ -112,9 +117,16 @@
     start();
   }
 
+  function resumePlayback() {
+    if (document.hidden) return;
+    if (!autoplayAttempted) autoplay();
+    else if (wantsPlayback && (audio.paused || context?.state !== "running")) start();
+  }
+
   toggle.addEventListener("click", () => {
     autoplayAttempted = true;
-    if (wantsPlayback) pause();
+    const playing = !audio.paused && context?.state === "running";
+    if (wantsPlayback && (pendingPlayback || playing)) pause();
     else {
       if (level() === 0) volume.value = lastVolume;
       start();
@@ -128,41 +140,22 @@
     if (value === 0) pause();
     else {
       lastVolume = value;
-      if (!wantsPlayback) start();
+      if (!wantsPlayback || audio.paused || context?.state !== "running") start();
       else if (fadeEndsAt > 0) setGain(value / 100, Math.max(0.15, fadeEndsAt - context.currentTime));
     }
     syncControls();
   });
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) pause();
-    else autoplay();
-  });
-  window.addEventListener("pagehide", pause);
+  document.addEventListener("visibilitychange", resumePlayback);
   window.addEventListener("pageshow", (event) => {
-    if (!event.persisted) return;
-    autoplayAttempted = false;
-    volume.value = maxVolume;
-    lastVolume = maxVolume;
-    syncControls();
-    autoplay();
-  });
-  document.querySelectorAll("video").forEach((video) => {
-    const stopForVideo = () => {
-      if (!video.paused && !video.muted && video.volume > 0) pause();
-    };
-    video.addEventListener("play", stopForVideo);
-    video.addEventListener("volumechange", stopForVideo);
+    if (event.persisted) resumePlayback();
   });
   audio.addEventListener("error", () => showError("Music is currently unavailable."));
   audio.addEventListener("play", () => {
-    if (!wantsPlayback || document.hidden) pause();
+    if (!wantsPlayback) pause();
   });
-  audio.addEventListener("pause", () => {
-    if (wantsPlayback && audio.paused) pause();
-  });
+  audio.addEventListener("pause", syncControls);
 
   player.hidden = false;
   syncControls();
-  if (document.readyState === "complete") autoplay();
-  else window.addEventListener("load", autoplay, { once: true });
+  autoplay();
 })();
