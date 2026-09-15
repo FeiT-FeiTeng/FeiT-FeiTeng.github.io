@@ -22,6 +22,15 @@
         <a class="wordmark" href="#about" aria-label="Fei Teng, home"
           >Fei Teng<span class="wordmark-dot" aria-hidden="true">.</span></a
         >
+        <nav id="navigation" aria-label="Main navigation">
+          <a href="#about" class="active">About</a>
+          <a href="#research">Research Focus</a>
+          <a href="#demos">Platforms</a>
+          <a href="#selected">Representative Works</a>
+          <a href="#publications">Publications</a>
+          <a href="#background">Background</a>
+          <a href="#contact">Contact</a>
+        </nav>
         <div class="music-player" role="group" aria-label="Background music" hidden>
           <button
             id="music-toggle"
@@ -34,7 +43,7 @@
             <i data-lucide="volume-x" aria-hidden="true"></i>
           </button>
           <label class="sr-only" for="music-volume">Music volume</label>
-          <input id="music-volume" type="range" min="0" max="6" step="0.5" value="6" />
+          <input id="music-volume" type="range" min="0" max="8" step="0.5" value="8" />
           <span id="music-status" class="sr-only" role="status"></span>
           <audio id="background-music" preload="none" loop data-src="assets/zoo.mp3"></audio>
         </div>
@@ -48,15 +57,6 @@
         >
           <i data-lucide="menu" aria-hidden="true"></i>
         </button>
-        <nav id="navigation" aria-label="Main navigation">
-          <a href="#about" class="active">About</a>
-          <a href="#research">Research Focus</a>
-          <a href="#demos">Platforms</a>
-          <a href="#selected">Representative Works</a>
-          <a href="#publications">Publications</a>
-          <a href="#background">Background</a>
-          <a href="#contact">Contact</a>
-        </nav>
       </div>
     </header>
     <nav class="section-nav" aria-label="Page sections">

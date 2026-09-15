@@ -157,10 +157,7 @@ strong {
   gap: 24px;
 }
 .music-player {
-  position: fixed;
-  right: max(16px, env(safe-area-inset-right));
-  bottom: max(12px, env(safe-area-inset-bottom));
-  z-index: 15;
+  --music-ink: #8b948f;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -168,8 +165,12 @@ strong {
   flex: 0 0 108px;
   height: 32px;
   padding-right: 4px;
-  background: var(--paper);
-  color: var(--muted);
+  background: transparent;
+  color: var(--music-ink);
+}
+.music-player:hover,
+.music-player:focus-within {
+  --music-ink: var(--muted);
 }
 .music-toggle {
   display: inline-flex;
@@ -184,7 +185,7 @@ strong {
   border: 0;
 }
 .music-toggle:hover {
-  color: var(--ink);
+  color: var(--muted);
 }
 .music-toggle svg {
   width: 15px;
@@ -204,7 +205,7 @@ strong {
 }
 #music-volume::-webkit-slider-runnable-track {
   height: 2px;
-  background: linear-gradient(to right, var(--muted) var(--volume-fill), var(--line) var(--volume-fill));
+  background: linear-gradient(to right, var(--music-ink) var(--volume-fill), var(--line) var(--volume-fill));
 }
 #music-volume::-moz-range-track {
   height: 2px;
@@ -212,7 +213,7 @@ strong {
 }
 #music-volume::-moz-range-progress {
   height: 2px;
-  background: var(--muted);
+  background: var(--music-ink);
 }
 #music-volume::-webkit-slider-thumb {
   appearance: none;
@@ -222,25 +223,18 @@ strong {
   margin-top: -3px;
   border: 0;
   border-radius: 50%;
-  background: var(--muted);
+  background: var(--music-ink);
 }
 #music-volume::-moz-range-thumb {
   width: 8px;
   height: 8px;
   border: 0;
   border-radius: 50%;
-  background: var(--muted);
+  background: var(--music-ink);
 }
 .music-toggle:focus-visible,
 #music-volume:focus-visible {
   outline-offset: 1px;
-}
-@media (max-width: 1399px) {
-  .music-player {
-    position: static;
-    margin-left: auto;
-    background: transparent;
-  }
 }
 @media (max-width: 720px) {
   .header-inner {
@@ -258,6 +252,7 @@ strong {
 }
 #navigation {
   display: flex;
+  margin-left: auto;
   align-items: center;
   gap: 20px;
   font-size: 12px;
@@ -1188,6 +1183,9 @@ dialog::backdrop {
   }
 }
 @media (max-width: 1000px) {
+  .music-player {
+    margin-left: auto;
+  }
   .container {
     width: calc(100% - 64px);
   }

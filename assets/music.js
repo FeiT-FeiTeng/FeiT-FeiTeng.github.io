@@ -9,7 +9,7 @@
   const volume = document.querySelector("#music-volume");
   const status = document.querySelector("#music-status");
   const AudioContext = window.AudioContext || window.webkitAudioContext;
-  const maxVolume = 6;
+  const maxVolume = 8;
   let context;
   let gain;
   let wantsPlayback = false;
@@ -138,6 +138,14 @@
     else autoplay();
   });
   window.addEventListener("pagehide", pause);
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) return;
+    autoplayAttempted = false;
+    volume.value = maxVolume;
+    lastVolume = maxVolume;
+    syncControls();
+    autoplay();
+  });
   document.querySelectorAll("video").forEach((video) => {
     const stopForVideo = () => {
       if (!video.paused && !video.muted && video.volume > 0) pause();
