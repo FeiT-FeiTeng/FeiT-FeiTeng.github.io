@@ -6,7 +6,7 @@
     location.hostname !== "feit-feiteng.github.io" ||
     location.port ||
     !["/", "/index.html"].includes(location.pathname) ||
-    !document.getElementById("busuanzi_value_site_pv") ||
+    !document.getElementById("busuanzi_value_site_uv") ||
     document.getElementById("page-view-counter-script")
   ) {
     return;
