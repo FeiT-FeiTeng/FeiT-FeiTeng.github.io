@@ -465,17 +465,4 @@
   );
   renderPublications();
   updateNavigation();
-
-  if (
-    location.protocol === "https:" &&
-    location.hostname === "feit-feiteng.github.io" &&
-    !location.port &&
-    ["/", "/index.html"].includes(location.pathname)
-  ) {
-    const counterScript = document.createElement("script");
-    counterScript.src =
-      "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-    counterScript.async = true;
-    document.head.appendChild(counterScript);
-  }
 })();
