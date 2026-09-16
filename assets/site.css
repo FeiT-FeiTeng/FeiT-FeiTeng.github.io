@@ -465,6 +465,23 @@ h2 {
   color: var(--muted);
   text-align: right;
 }
+.focus-relationship {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: max-content;
+  max-width: 100%;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  white-space: nowrap;
+}
+.focus-relationship-arrow {
+  width: 14px;
+  text-align: center;
+}
 .focus-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
