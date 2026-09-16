@@ -1172,6 +1172,16 @@ select {
   width: 13px;
   height: 13px;
 }
+.visit-counter {
+  min-height: 32px;
+  padding: 0 16px 16px;
+  color: var(--muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  line-height: 16px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
 dialog {
   width: min(1100px, calc(100% - 48px));
   max-height: calc(100dvh - 48px);
