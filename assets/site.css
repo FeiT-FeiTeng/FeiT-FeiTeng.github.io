@@ -465,14 +465,26 @@ h2 {
   color: var(--muted);
   text-align: right;
 }
+.focus-heading {
+  align-items: baseline;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.focus-heading:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
 .focus-heading-title {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 14px;
-  min-width: 0;
+  flex-shrink: 0;
 }
 .focus-heading-title h2 {
   flex-shrink: 0;
+  white-space: nowrap;
 }
 .focus-relationship {
   display: flex;
@@ -480,6 +492,7 @@ h2 {
   gap: 6px;
   width: max-content;
   max-width: 100%;
+  flex-shrink: 0;
   color: var(--muted);
   font-size: 12px;
   font-weight: 400;
@@ -489,6 +502,12 @@ h2 {
 .focus-relationship-arrow {
   width: 14px;
   text-align: center;
+}
+.research-section .focus-count-note {
+  display: block;
+  flex-shrink: 0;
+  margin-left: auto;
+  white-space: nowrap;
 }
 .focus-grid {
   display: grid;
@@ -1585,31 +1604,15 @@ dialog::backdrop {
   .section-note {
     display: none;
   }
-  .research-section .section-heading {
-    flex-wrap: wrap;
-    gap: 6px 15px;
+  .research-section .focus-heading {
+    align-items: baseline;
   }
   .focus-heading-title {
-    width: 100%;
     gap: 12px;
   }
   .focus-relationship {
-    display: block;
-    width: auto;
-    min-width: 0;
     font-size: 11px;
     line-height: 16px;
-    white-space: normal;
-  }
-  .focus-relationship > span:first-child {
-    white-space: nowrap;
-  }
-  .research-section .focus-count-note {
-    display: block;
-    flex-basis: 100%;
-    margin-left: 0;
-    max-width: 100%;
-    text-align: left;
   }
   .focus-grid {
     grid-template-columns: 1fr;
