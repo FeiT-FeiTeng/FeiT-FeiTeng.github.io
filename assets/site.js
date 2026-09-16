@@ -102,7 +102,7 @@
           loading="lazy" decoding="async" fetchpriority="low">
         <span class="zoom-icon">${icon("maximize-2")}</span>
       </button>
-      <div class="work-topline"><span class="work-topic">${escapeHTML(work.topic)}</span><span class="venue-label">${paper.preprint ? "Preprint / " + paper.year : escapeHTML(paper.venue)}</span></div>
+      <div class="work-topline"><span class="work-topic">${escapeHTML(work.topic)}</span><span class="venue-label">${paper.preprint ? "Under review / " + paper.year : escapeHTML(paper.venue)}</span></div>
       <h3><a href="${escapeHTML(paper.url)}" ${external}>${escapeHTML(name)}</a></h3>
       <p class="work-description">${escapeHTML(work.description)}</p>
       <div class="work-bottom"><p class="work-role"><strong>${escapeHTML(paper.role)}</strong></p>
@@ -131,6 +131,7 @@
         paper.title,
         paper.authors.join(" "),
         paper.venue,
+        paper.preprint ? "Under review" : "",
         paper.year,
       ]
         .join(" ")
@@ -151,7 +152,7 @@
           )
           .join(", ");
         const venue = paper.preprint
-          ? "arXiv preprint"
+          ? "Under review"
           : paper.venue.replace(/\s+20\d{2}/g, "");
         return `<article class="publication-row" data-paper-id="${paper.id}">
         <div class="publication-meta"><span class="publication-venue">${escapeHTML(venue)}</span><span class="publication-year">${paper.year}</span></div>
